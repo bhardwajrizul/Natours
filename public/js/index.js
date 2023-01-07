@@ -21,36 +21,54 @@ if (mapBox) {
 }
 
 if (loginForm)
-  loginForm.addEventListener('submit', e => {
+  loginForm.addEventListener('submit', async e => {
     e.preventDefault();
+
+    document.querySelector('.btn--green').textContent = 'Please Wait...';
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    login(email, password);
+    await login(email, password);
+
+    document.querySelector('.btn--green').textContent = 'LogIn';
+
   });
 
 if (signupForm) 
-  signupForm.addEventListener('submit', e => {
+  signupForm.addEventListener('submit', async e => {
     e.preventDefault();
+
+    document.querySelector('.btn--green').textContent = 'Please Wait...';
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const password_confirm = document.getElementById('password-confirm').value;
 
-    signup(name, email, password, password_confirm);
+    await signup(name, email, password, password_confirm);
+
+    document.querySelector('.btn--green').textContent = 'SignUp';
+
   });
 
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
 
 if (userDataForm)
-  userDataForm.addEventListener('submit', e => {
+  userDataForm.addEventListener('submit', async e => {
     e.preventDefault();
+
+    document.querySelector('.btn--save-settings').textContent = 'Updating...';
+
     const form = new FormData();
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
     console.log(form);
 
-    updateSettings(form, 'data');
+    await updateSettings(form, 'data');
+
+    document.querySelector('.btn--save-settings').textContent = 'Save Settings';
+
   });
 
 if (userPasswordForm)
