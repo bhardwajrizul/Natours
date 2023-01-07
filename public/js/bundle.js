@@ -6682,12 +6682,11 @@ var displayMap = function displayMap(locations) {
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
-    scrollZoom: false
+    // scrollZoom: false
     // center: [-118.113491, 34.111745],
     // zoom: 10,
-    // interactive: false
+    interactive: true
   });
-
   var bounds = new mapboxgl.LngLatBounds();
   locations.forEach(function (loc) {
     // Create marker
@@ -8315,7 +8314,7 @@ var login = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            url: '/api/v1/users/login',
             data: {
               email: email,
               password: password
@@ -8356,7 +8355,7 @@ var logout = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            url: '/api/v1/users/logout'
           });
         case 3:
           res = _context2.sent;
@@ -8403,7 +8402,7 @@ var signup = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/signup',
+            url: '/api/v1/users/signup',
             data: {
               name: name,
               email: email,
@@ -8413,23 +8412,24 @@ var signup = /*#__PURE__*/function () {
           });
         case 3:
           res = _context.sent;
+          console.log(res.data.status);
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'signup successfull!');
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 11;
           break;
-        case 7:
-          _context.prev = 7;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
           (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
   return function signup(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
@@ -8724,7 +8724,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64844" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53636" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
