@@ -18,7 +18,12 @@ const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*'
+  })
+);
+
 app.options('*', cors());
 
 app.set('view engine', 'pug');
