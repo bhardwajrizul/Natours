@@ -36,6 +36,12 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  let userCount = await User.countDocuments({});
+  let maxUsers = 30;
+  if (userCount > maxUsers) {
+    return next(new AppError('New Accounts cannot be created! Contact Admin for sample ID and Password', 400));
+  }
+
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
