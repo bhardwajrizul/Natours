@@ -1,3 +1,5 @@
+// disable eslint for this file
+/* eslint-disable */
 const AppError = require('./../utils/appError');
 
 const handleCastErrorDB = err => {
@@ -52,7 +54,8 @@ const sendErrorProd = (err, req, res) => {
     if (err.isOperational) {
       return res.status(err.statusCode).json({
         status: err.status,
-        message: err.message
+        message: err.message,
+        statusCode: err.statusCode
       });
     }
     // B) Programming or other unknown error: don't leak error details
